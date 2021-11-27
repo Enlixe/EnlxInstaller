@@ -103,6 +103,8 @@ namespace EnlxInstaller
             // optifine
             // 
             this.optifine.AutoSize = true;
+            this.optifine.Checked = true;
+            this.optifine.CheckState = System.Windows.Forms.CheckState.Checked;
             this.optifine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.optifine.Location = new System.Drawing.Point(12, 141);
             this.optifine.Name = "optifine";
