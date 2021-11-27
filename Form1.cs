@@ -63,8 +63,8 @@ namespace EnlxInstaller
                  */
                 if (optifine.Checked) {
                     optifine.Enabled = false;
-                    string optifinepath = Path.Combine(folderpath, "mods\\optifine.jar");
-                    _download_downloadFile("https://media.forgecdn.net/files/3479/861/OptiForge-MC1.17.1-0.1.1.jar", optifinepath);
+                    _download_downloadFile("https://optifine.net/downloadx?f=OptiFine_1.17.1_HD_U_H1.jar&x=629d12e4e1ae4f856c12d29f23a6f0d7", Path.Combine(folderpath, "mods\\addons-optiforge.jar"));
+                    _download_downloadFile("https://media.forgecdn.net/files/3479/861/OptiForge-MC1.17.1-0.1.1.jar", Path.Combine(folderpath, "mods\\addons-optifine.jar"));
                 }
             });
         }
