@@ -36,6 +36,8 @@ namespace EnlxInstaller
             this.progressLabel = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.info = new System.Windows.Forms.Label();
+            this.optifine = new System.Windows.Forms.CheckBox();
+            this.addonsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,12 +80,11 @@ namespace EnlxInstaller
             // pictureBox
             // 
             this.pictureBox.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.ErrorImage")));
-            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
             this.pictureBox.ImageLocation = "./assets/icon.png";
             this.pictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.InitialImage")));
             this.pictureBox.Location = new System.Drawing.Point(12, 12);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(776, 232);
+            this.pictureBox.Size = new System.Drawing.Size(776, 69);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 4;
             this.pictureBox.TabStop = false;
@@ -99,11 +100,34 @@ namespace EnlxInstaller
             this.info.TabIndex = 5;
             this.info.Text = "Modpack Installer";
             // 
+            // optifine
+            // 
+            this.optifine.AutoSize = true;
+            this.optifine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.optifine.Location = new System.Drawing.Point(12, 141);
+            this.optifine.Name = "optifine";
+            this.optifine.Size = new System.Drawing.Size(94, 24);
+            this.optifine.TabIndex = 6;
+            this.optifine.Text = "OptiFine";
+            this.optifine.UseVisualStyleBackColor = true;
+            // 
+            // addonsLabel
+            // 
+            this.addonsLabel.AutoSize = true;
+            this.addonsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.addonsLabel.Location = new System.Drawing.Point(7, 99);
+            this.addonsLabel.Name = "addonsLabel";
+            this.addonsLabel.Size = new System.Drawing.Size(107, 29);
+            this.addonsLabel.TabIndex = 7;
+            this.addonsLabel.Text = "Add-ons";
+            // 
             // EnlxInstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.addonsLabel);
+            this.Controls.Add(this.optifine);
             this.Controls.Add(this.info);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.progressLabel);
@@ -127,6 +151,8 @@ namespace EnlxInstaller
         private System.Windows.Forms.Label progressLabel;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label info;
+        private System.Windows.Forms.CheckBox optifine;
+        private System.Windows.Forms.Label addonsLabel;
     }
 }
 

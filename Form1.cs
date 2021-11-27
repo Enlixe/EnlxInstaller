@@ -14,7 +14,9 @@ namespace EnlxInstaller
         static readonly string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         static readonly string folderpath = Path.Combine(appdata, ".minecraft\\nobsmp");
         static readonly string filepath = Path.Combine(folderpath, "mod.zip");
+
         static readonly string modpath = Path.Combine(folderpath, "Better Minecraft Server Pack [FORGE] 1.17.1");
+        static readonly string modsfolder = Path.Combine(folderpath, "mods");
 
         bool folderDone = false;
         bool downloadDone = false;
@@ -46,12 +48,23 @@ namespace EnlxInstaller
             Console.WriteLine("Info | Task - Installing");
 
             // Making folder
-            await Task.Run(() => _download_createFolder(folderpath));
+            await Task.Run(() => {
+                _download_createFolder(folderpath);
+                _download_createFolder(Path.Combine(folderpath, "mods"));
+            });
 
             // Download
             await Task.Run(() => {
                 if (folderDone)
                     _download_downloadFile("https://media.forgecdn.net/files/3526/403/Better+Minecraft+Server+Pack+%5bFORGE%5d+v10.5.zip", filepath);
+
+                /*
+                 * Addons
+                 */
+                if (optifine.Checked) {
+                    string optifinepath = Path.Combine(folderpath, "mods\\optifine.jar");
+                    _download_downloadFile("https://optifine.net/downloadx?f=OptiFine_1.17.1_HD_U_H1.jar&x=629d12e4e1ae4f856c12d29f23a6f0d7", optifinepath);
+                }
             });
         }
 
@@ -103,9 +116,9 @@ namespace EnlxInstaller
 
                 webClient.DownloadFileAsync(new Uri(downloadLink), downloadPath);
 
-                Console.WriteLine("Info | Downloading");
+                Console.WriteLine("Info | Downloading - from {0}", downloadLink);
             } catch (Exception) {
-                Console.WriteLine("Err | Downloading - Failed\n");
+                Console.WriteLine("Err | Downloading - Failed {0}n", downloadLink);
                 MessageBox.Show("Err | Failed Downloading");
                 Application.Exit();
             }
@@ -167,9 +180,9 @@ namespace EnlxInstaller
                     Application.Exit();
                 }
             } catch (Exception) {
-                Console.WriteLine("Err | Extract - Could not extract / delete ZIP!\n");
-                MessageBox.Show("Err | Could not extract / delete ZIP!");
-                Application.Exit();
+                // Console.WriteLine("Err | Extract - Could not extract / delete ZIP!\n");
+                // MessageBox.Show("Err | Could not extract / delete ZIP!");
+                // Application.Exit();
             }
         }
 
