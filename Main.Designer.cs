@@ -105,12 +105,13 @@ namespace EnlxInstaller
             this.optifine.AutoSize = true;
             this.optifine.Checked = true;
             this.optifine.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.optifine.Enabled = false;
             this.optifine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.optifine.Location = new System.Drawing.Point(12, 141);
             this.optifine.Name = "optifine";
-            this.optifine.Size = new System.Drawing.Size(94, 24);
+            this.optifine.Size = new System.Drawing.Size(306, 24);
             this.optifine.TabIndex = 6;
-            this.optifine.Text = "OptiFine";
+            this.optifine.Text = "OptiFine (currently bugged, disabled)";
             this.optifine.UseVisualStyleBackColor = true;
             // 
             // addonsLabel
@@ -139,6 +140,7 @@ namespace EnlxInstaller
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EnlxInstaller";
             this.Text = "EnlX Installer";
+            this.Load += new System.EventHandler(this.EnlxInstaller_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
