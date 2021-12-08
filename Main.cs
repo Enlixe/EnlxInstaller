@@ -89,14 +89,29 @@ namespace EnlxInstaller
 
         private void addonsButton_Click(object sender, EventArgs e)
         {
+            addonsButton.Enabled = false;
             /*
              * Addons (currently optifine bugged out)
              */
-                 
-            if (optifine.Checked == true)
+
+            /*     
+                if (addonsOptifine.Checked == true)
+                {
+                    addonsOptifine.Enabled = false;
+                    _download_downloadAddons("https://enlixe.github.io/assets/download/optifine.jar", Path.Combine(folderpath, "mods\\addons-optifine.jar"));
+                }
+            */
+
+            if (addonsJourneymap.Checked == true)
             {
-                optifine.Enabled = false;
-                _download_downloadAddons("https://enlixe.github.io/assets/download/optifine.jar", Path.Combine(folderpath, "mods\\addons-optifine.jar"));
+                addonsJourneymap.Enabled = false;
+                _download_downloadAddons("https://media.forgecdn.net/files/3509/575/journeymap-1.17.1-5.7.3.jar", Path.Combine(folderpath, "mods\\addons-journeymap.jar"));
+            }
+
+            if (addonsMousetweaks.Checked == true)
+            {
+                addonsMousetweaks.Enabled = false;
+                _download_downloadAddons("https://media.forgecdn.net/files/3515/478/MouseTweaks-forge-mc1.17.1-2.15.jar", Path.Combine(folderpath, "mods\\addons-mousetweaks.jar"));
             }
         }
 
@@ -113,6 +128,8 @@ namespace EnlxInstaller
 
                 Console.WriteLine("Info | Folder - Re-Created {0}\n", folderpath);
                 folderDone = true;
+
+                download();
             }
             else
             {
@@ -125,7 +142,7 @@ namespace EnlxInstaller
         /*
          * Download Task
          */
-            private async Task download()
+        private async Task download()
         {
             Console.WriteLine("Info | Task - Installing");
 
@@ -154,23 +171,7 @@ namespace EnlxInstaller
 
                     Console.WriteLine("Info | Folder - Created {0}\n", folder);
                     folderDone = true;
-                } else {
-                    // Confirmation if user want to redownload or cancel
-                    var result = MessageBox.Show("There is already a folder called nobs do you want to redownload it ?", "Repair ?", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes) {
-                        MessageBox.Show("Repairing Download");
-
-                        Directory.Delete(folder, true);
-                        Directory.CreateDirectory(folder);
-
-                        Console.WriteLine("Info | Folder - Re-Created {0}\n", folder);
-                        folderDone = true;
-                    } else {
-                        Console.WriteLine("Info | Folder - Repair Cancelled\n");
-                        MessageBox.Show("Installation Cancelled");
-                        Application.Exit();
-                    }
-                }
+                } 
             } catch (Exception) {
                 Console.WriteLine("Err | Folder - Failed Creating Folder\n");
                 MessageBox.Show("Err | Failed Creating Mod Folder");
@@ -186,6 +187,7 @@ namespace EnlxInstaller
             try
             {
                 WebClient webClient = new WebClient();
+                webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(_download_downloadAddons_Completed);
                 webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(_download_downloadAddons_ProgressChanged);
 
                 webClient.DownloadFileAsync(new Uri(downloadLink), downloadPath);
@@ -206,6 +208,15 @@ namespace EnlxInstaller
             }));
             progressLabel.Invoke(new Action(() => {
                 progressLabel.Text = "Downloading Addons - " + e.ProgressPercentage.ToString() + "%";
+            }));
+        }
+        private void _download_downloadAddons_Completed(object sender, AsyncCompletedEventArgs e)
+        {
+            Console.WriteLine("Info | Download Completed");
+            downloadDone = true;
+
+            progressLabel.Invoke(new Action(() => {
+                progressLabel.Text = "Downloading Addons - Completed";
             }));
         }
 
@@ -245,7 +256,7 @@ namespace EnlxInstaller
                 /*
                  * Addons (currently optifine bugged out)
                  *
-                 
+
                 if (optifine.Checked == true)
                 {
                     optifine.Enabled = false;
@@ -254,6 +265,17 @@ namespace EnlxInstaller
                 }
 
                 */
+
+                if (addonsJourneymap.Checked == true)
+                {
+                    addonsJourneymap.Enabled = false;
+                    _download_downloadAddons("https://media.forgecdn.net/files/3509/575/journeymap-1.17.1-5.7.3.jar", Path.Combine(folderpath, "mods\\addons-journeymap.jar"));
+                }
+                if (addonsMousetweaks.Checked == true)
+                {
+                    addonsMousetweaks.Enabled = false;
+                    _download_downloadAddons("https://media.forgecdn.net/files/3515/478/MouseTweaks-forge-mc1.17.1-2.15.jar", Path.Combine(folderpath, "mods\\addons-mousetweaks.jar"));
+                }
 
                 if (downloadDone)
                     _download_extractFile(filepath, folderpath);

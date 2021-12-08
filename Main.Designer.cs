@@ -35,10 +35,12 @@ namespace EnlxInstaller
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.optifine = new System.Windows.Forms.CheckBox();
+            this.addonsOptifine = new System.Windows.Forms.CheckBox();
             this.addonsLabel = new System.Windows.Forms.Label();
             this.reinstallButton = new System.Windows.Forms.Button();
             this.addonsButton = new System.Windows.Forms.Button();
+            this.addonsJourneymap = new System.Windows.Forms.CheckBox();
+            this.addonsMousetweaks = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,19 +94,19 @@ namespace EnlxInstaller
             this.pictureBox.TabStop = false;
             this.pictureBox.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // optifine
+            // addonsOptifine
             // 
-            this.optifine.AutoSize = true;
-            this.optifine.Checked = true;
-            this.optifine.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.optifine.Enabled = false;
-            this.optifine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.optifine.Location = new System.Drawing.Point(12, 141);
-            this.optifine.Name = "optifine";
-            this.optifine.Size = new System.Drawing.Size(174, 24);
-            this.optifine.TabIndex = 6;
-            this.optifine.Text = "OptiFine (unstable)";
-            this.optifine.UseVisualStyleBackColor = true;
+            this.addonsOptifine.AutoSize = true;
+            this.addonsOptifine.Checked = true;
+            this.addonsOptifine.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.addonsOptifine.Enabled = false;
+            this.addonsOptifine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.addonsOptifine.Location = new System.Drawing.Point(12, 141);
+            this.addonsOptifine.Name = "addonsOptifine";
+            this.addonsOptifine.Size = new System.Drawing.Size(174, 24);
+            this.addonsOptifine.TabIndex = 6;
+            this.addonsOptifine.Text = "OptiFine (unstable)";
+            this.addonsOptifine.UseVisualStyleBackColor = true;
             // 
             // addonsLabel
             // 
@@ -128,7 +130,6 @@ namespace EnlxInstaller
             // 
             // addonsButton
             // 
-            this.addonsButton.Enabled = false;
             this.addonsButton.Location = new System.Drawing.Point(655, 99);
             this.addonsButton.Name = "addonsButton";
             this.addonsButton.Size = new System.Drawing.Size(133, 29);
@@ -137,15 +138,39 @@ namespace EnlxInstaller
             this.addonsButton.UseVisualStyleBackColor = true;
             this.addonsButton.Click += new System.EventHandler(this.addonsButton_Click);
             // 
+            // addonsJourneymap
+            // 
+            this.addonsJourneymap.AutoSize = true;
+            this.addonsJourneymap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.addonsJourneymap.Location = new System.Drawing.Point(12, 171);
+            this.addonsJourneymap.Name = "addonsJourneymap";
+            this.addonsJourneymap.Size = new System.Drawing.Size(122, 24);
+            this.addonsJourneymap.TabIndex = 10;
+            this.addonsJourneymap.Text = "JourneyMap";
+            this.addonsJourneymap.UseVisualStyleBackColor = true;
+            // 
+            // addonsMousetweaks
+            // 
+            this.addonsMousetweaks.AutoSize = true;
+            this.addonsMousetweaks.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.addonsMousetweaks.Location = new System.Drawing.Point(12, 201);
+            this.addonsMousetweaks.Name = "addonsMousetweaks";
+            this.addonsMousetweaks.Size = new System.Drawing.Size(138, 24);
+            this.addonsMousetweaks.TabIndex = 11;
+            this.addonsMousetweaks.Text = "MouseTweaks";
+            this.addonsMousetweaks.UseVisualStyleBackColor = true;
+            // 
             // EnlxInstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.addonsMousetweaks);
+            this.Controls.Add(this.addonsJourneymap);
             this.Controls.Add(this.addonsButton);
             this.Controls.Add(this.reinstallButton);
             this.Controls.Add(this.addonsLabel);
-            this.Controls.Add(this.optifine);
+            this.Controls.Add(this.addonsOptifine);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.progressLabel);
             this.Controls.Add(this.progressBar);
@@ -168,10 +193,12 @@ namespace EnlxInstaller
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label progressLabel;
         private System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.CheckBox optifine;
+        private System.Windows.Forms.CheckBox addonsOptifine;
         private System.Windows.Forms.Label addonsLabel;
         private System.Windows.Forms.Button reinstallButton;
         private System.Windows.Forms.Button addonsButton;
+        private System.Windows.Forms.CheckBox addonsJourneymap;
+        private System.Windows.Forms.CheckBox addonsMousetweaks;
     }
 }
 
