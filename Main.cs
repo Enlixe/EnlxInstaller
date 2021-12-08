@@ -94,13 +94,12 @@ namespace EnlxInstaller
              * Addons (currently optifine bugged out)
              */
 
-            /*     
-                if (addonsOptifine.Checked == true)
-                {
-                    addonsOptifine.Enabled = false;
-                    _download_downloadAddons("https://enlixe.github.io/assets/download/optifine.jar", Path.Combine(folderpath, "mods\\addons-optifine.jar"));
-                }
-            */
+            if (addonsOptifine.Checked == true)
+            {
+                addonsOptifine.Enabled = false;
+                File.Delete(Path.Combine(folderpath, "mods\\twilightforest-1.17.1-4.0.849-universal.jar"));
+                _download_downloadAddons("https://enlixe.github.io/assets/download/optifine.jar", Path.Combine(folderpath, "mods\\addons-optifine.jar"));
+            }
 
             if (addonsJourneymap.Checked == true)
             {
@@ -255,16 +254,16 @@ namespace EnlxInstaller
 
                 /*
                  * Addons (currently optifine bugged out)
-                 *
+                 */
 
-                if (optifine.Checked == true)
+                if (addonsOptifine.Checked == true)
                 {
-                    optifine.Enabled = false;
-                    _download_downloadAddons("https://enlixe.github.io/assets/download/optifine.jar", Path.Combine(folderpath, "mods\\addons-optifine.jar"));
-                    _download_downloadAddons("https://media.forgecdn.net/files/3479/861/OptiForge-MC1.17.1-0.1.1.jar", Path.Combine(folderpath, "mods\\addons-optiforgejar"));
-                }
+                    addonsOptifine.Enabled = false;
+                    string twilightforest = Path.Combine(folderpath, "mods\\twilightforest-1.17.1-4.0.849-universal.jar");
 
-                */
+                    if (File.Exists(twilightforest)) File.Delete(twilightforest);
+                    _download_downloadAddons("https://enlixe.github.io/assets/download/optifine.jar", Path.Combine(folderpath, "mods\\addons-optifine.jar"));
+                }
 
                 if (addonsJourneymap.Checked == true)
                 {
@@ -333,8 +332,37 @@ namespace EnlxInstaller
         private async Task add_profile()
         {
             try {
+                string profilePathNew = Path.Combine(appdata, ".minecraft\\launcher_profiles_microsoft_store.json");
+                string jsonNew = File.ReadAllText(profilePathNew);
+
                 string profilePath = Path.Combine(appdata, ".minecraft\\launcher_profiles.json");
                 string json = File.ReadAllText(profilePath);
+
+                if (File.Exists(profilePathNew))
+                {
+                    JObject joNew = JObject.Parse(jsonNew);
+                    JObject profilesNew = (JObject)joNew["profiles"];
+
+                    if (!profilesNew.ContainsKey("Nobs 1.17.1"))
+                    {
+                        profilesNew.AddFirst(
+                            new JProperty("Nobs 1.17.1",
+                                new JObject(
+                                    // Created
+                                    new JProperty("gameDir", folderpath),
+                                    new JProperty("icon", "data:image/png;base64,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"),
+                                    new JProperty("javaArgs", "-Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M"),
+                                    // Last used
+                                    new JProperty("lastVersionId", "1.17.1-forge-37.1.0"),
+                                    new JProperty("name", "Nobs"),
+                                    new JProperty("type", "custom")
+                                )
+                            )
+                        );
+
+                        File.WriteAllText(profilePath, joNew.ToString());
+                    }
+                }
 
                 JObject jo = JObject.Parse(json);
                 JObject profiles = (JObject)jo["profiles"];

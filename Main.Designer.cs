@@ -99,7 +99,6 @@ namespace EnlxInstaller
             this.addonsOptifine.AutoSize = true;
             this.addonsOptifine.Checked = true;
             this.addonsOptifine.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.addonsOptifine.Enabled = false;
             this.addonsOptifine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.addonsOptifine.Location = new System.Drawing.Point(12, 141);
             this.addonsOptifine.Name = "addonsOptifine";
