@@ -54,10 +54,27 @@ namespace EnlxInstaller
                     Application.Exit();
                 }
             }
+
+            if (Directory.Exists(folderpath))
+                downloadButton.Enabled = false;
+
+            // Reinstall button
+            if (!Directory.Exists(folderpath))
+                reinstallButton.Visible = false;
+            else
+                reinstallButton.Visible = true;
+
+            // Addons button
+            if (!Directory.Exists(modsfolder))
+                addonsButton.Visible = false;
+            else
+                addonsButton.Visible = true;
         }
 
         /* Unused */
         private void pictureBox1_Click(object sender, EventArgs e) { }
+
+
 
         /*
          * Download Button Clicked
@@ -70,10 +87,45 @@ namespace EnlxInstaller
             download();
         }
 
+        private void addonsButton_Click(object sender, EventArgs e)
+        {
+            /*
+             * Addons (currently optifine bugged out)
+             */
+                 
+            if (optifine.Checked == true)
+            {
+                optifine.Enabled = false;
+                _download_downloadAddons("https://enlixe.github.io/assets/download/optifine.jar", Path.Combine(folderpath, "mods\\addons-optifine.jar"));
+            }
+        }
+
+        private void reinstallButton_Click(object sender, EventArgs e)
+        {
+            // Confirmation if user want to redownload or cancel
+            var result = MessageBox.Show("Are you sure you want to redownload it ? \nAll settings / files will gone !", "Repair ?", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                MessageBox.Show("Repairing Download");
+
+                Directory.Delete(folderpath, true);
+                Directory.CreateDirectory(folderpath);
+
+                Console.WriteLine("Info | Folder - Re-Created {0}\n", folderpath);
+                folderDone = true;
+            }
+            else
+            {
+                Console.WriteLine("Info | Folder - Repair Cancelled\n");
+                MessageBox.Show("Installation Cancelled");
+                Application.Exit();
+            }
+        }
+
         /*
          * Download Task
          */
-        private async Task download()
+            private async Task download()
         {
             Console.WriteLine("Info | Task - Installing");
 
