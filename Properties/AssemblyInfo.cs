@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EnlxInstaller")]
+[assembly: AssemblyTitle("EnlXInstaller")]
 [assembly: AssemblyDescription("A simple modpack downloader")]
 [assembly: AssemblyConfiguration("Release")]
-[assembly: AssemblyCompany("Enlixe")]
+[assembly: AssemblyCompany("EnlX")]
 [assembly: AssemblyProduct("EnlxInstaller")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
